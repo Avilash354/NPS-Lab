@@ -1,84 +1,71 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2513
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
-{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+		Program Description
 
-\f0\fs24 \cf0 		Program Description\
-\
-\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
-\
-\pard\pardeftab720\partightenfactor0
+——————————————————————
 
-\f1 \cf2 \expnd0\expndtw0\kerning0
-# Program 6 - Echo client/Server\cb3 \
-\
-\cb1 ## TOC\cb3 \
-\cb1 - [Program 6 - Echo client/Server](#program-6\'97echo-client server)\cb3 \
-\cb1   - [TOC](#toc)\cb3 \
-\cb1   - [Program Description](#program-description)\cb3 \
-\cb1   - [Iterative](#iterative)\cb3 \
-\cb1     - [Output](#output)\cb3 \
-\cb1       - [Client incorrect address](#client-incorrect-address)\cb3 \
-\cb1       - [Successful echos](#successful-echos)\cb3 \
-\cb1   - [Concurrent](#concurrent)\cb3 \
-\cb1     - [Output](#output-1)\cb3 \
-\cb1       - [Client incorrect address](#client-incorrect-address-1)\cb3 \
-\cb1       - [Successful communication](#successful-communication)\cb3 \
-\
-\cb1 ## Program Description\cb3 \
-\
-\cb1 The communication process is this minimal process:\cb3 \
-\
-\cb1 1. Client sends string size to server\cb3 \
-\cb1 2. Client sends string to server\cb3 \
-\cb1 3. Server sends string back to client\cb3 \
-\
-\cb1 The iterative and concurrent versions share the same client (As it is a design of the server)\cb3 \
-\
-\cb1 ## Iterative\cb3 \
-\
-\cb1 The server maintains one thread and responds with it. Multiple requests are queued for response, and dealt with in a FIFO manner.\cb3 \
-\
-\cb1 ### Output\cb3 \
-\
-\cb1 #### Client incorrect address\cb3 \
-\
-\cb1 Two cases are shown here:\cb3 \
-\cb1 1. Client cannot connect as server isn't running\cb3 \
-\cb1 2. Insufficient arguments provided\cb3 \
-\
-\cb1 ![Incorrect client](Screenshot%20from%202020-11-02%2015-31-05.png)\cb3 \
-\
-\
-\cb1 #### Successful echos\cb3 \
-\
-\cb1 It can be seen that all the processes share the same pid, showing that the same process is being used\cb3 \
-\
-\cb1 ![Successful echoes](Screenshot%20from%202020-11-02%2015-28-47.png)\cb3 \
-\
-\cb1 ## Concurrent\cb3 \
-\
-\cb1 The server forks to respond to the client. Additionally, a signal handler needs to be present, to remove the exit child processes after they have responded to the client.\cb3 \
-\
-\cb1 ### Output\cb3 \
-\
-\cb1 #### Client incorrect address\cb3 \
-\
-\cb1 Two cases are shown here:\cb3 \
-\cb1 1. Client cannot connect as server isn't running\cb3 \
-\cb1 2. Insufficient arguments provided\cb3 \
-\
-\cb1 ![Incorrect client](Screenshot%20from%202020-11-02%2015-31-05.png)\cb3 \
-\
-\cb1 #### Successful communication\cb3 \
-\
-\cb1 The different pid\'92s depict that the process forks in order to respond. This allows multiple clients to connect to the server and communicate with it at the same time.\cb3 \
-\
-\cb1 ![Concurrent successful](Screenshot%20from%202020-11-02%2015-37-36.png)\cb3 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+# Program 6 - Echo client/Server
 
-\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
-\
-}
+## TOC
+- [Program 6 - Echo client/Server](#program-6—echo-client server)
+  - [TOC](#toc)
+  - [Program Description](#program-description)
+  - [Iterative](#iterative)
+    - [Output](#output)
+      - [Client incorrect address](#client-incorrect-address)
+      - [Successful echos](#successful-echos)
+  - [Concurrent](#concurrent)
+    - [Output](#output-1)
+      - [Client incorrect address](#client-incorrect-address-1)
+      - [Successful communication](#successful-communication)
+
+## Program Description
+
+The communication process is this minimal process:
+
+1. Client sends string size to server
+2. Client sends string to server
+3. Server sends string back to client
+
+The iterative and concurrent versions share the same client (As it is a design of the server)
+
+## Iterative
+
+The server maintains one thread and responds with it. Multiple requests are queued for response, and dealt with in a FIFO manner.
+
+### Output
+
+#### Client incorrect address
+
+Two cases are shown here:
+1. Client cannot connect as server isn't running
+2. Insufficient arguments provided
+
+![Incorrect client](Screenshot%20from%202020-11-02%2015-31-05.png)
+
+
+#### Successful echos
+
+It can be seen that all the processes share the same pid, showing that the same process is being used
+
+![Successful echoes](Screenshot%20from%202020-11-02%2015-28-47.png)
+
+## Concurrent
+
+The server forks to respond to the client. Additionally, a signal handler needs to be present, to remove the exit child processes after they have responded to the client.
+
+### Output
+
+#### Client incorrect address
+
+Two cases are shown here:
+1. Client cannot connect as server isn't running
+2. Insufficient arguments provided
+
+![Incorrect client](Screenshot%20from%202020-11-02%2015-31-05.png)
+
+#### Successful communication
+
+The different pid’s depict that the process forks in order to respond. This allows multiple clients to connect to the server and communicate with it at the same time.
+
+![Concurrent successful](Screenshot%20from%202020-11-02%2015-37-36.png)
+
+
