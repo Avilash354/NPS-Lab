@@ -1,7 +1,6 @@
-# NPS-lab
-Avilash M(1RV18CS031)(NPS Lab Programs)
+# NPS Laboratory
 
-# NPS Lab
+Avilash M(1RV18CS031)(NPS Lab Programs)
 
 All folders have the code and the documentation for the respective programs for the Network Programming and Security lab.
 
